@@ -12,3 +12,47 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+footer {
+    background-color: #0b2948;
+    max-width: 1024px;
+    margin: auto;
+    height: auto;
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+footer p {
+    margin-top: 1rem;
+}
+
+.lightgray {
+    color: #f8f8f8 !important;
+}
+
+.navbar {
+    background-color: #044c84;
+    border-bottom: 10px solid #e7e7e7;
+    max-width: 1024px;
+    margin: auto;
+}
+
+.navbar-brand:hover {
+    color: #c1d5ea !important;
+}
+.nav-link:hover {
+    color: #c1d5ea !important;
+}
+
+.projectCard {
+    max-width: 1024px;
+    margin: auto;
+    padding: 5%;
+}
+
+.card {
+    max-width: 200px;
+}
+
