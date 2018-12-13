@@ -11,6 +11,8 @@ import
     NavbarToggler,
 } from "reactstrap"
 
+import Login from "./login"
+
 class NavBar extends Component
 {
     constructor(props)
@@ -38,6 +40,9 @@ class NavBar extends Component
                                 <NavLink className="lightgray" href="https://github.com/rbmarliere/darma">
                                     git
                                 </NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <Login></Login>
                             </NavItem>
                         </Nav>
                     </Collapse>
