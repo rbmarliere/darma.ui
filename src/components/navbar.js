@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component } from "react";
 
 import
 {
@@ -9,9 +9,9 @@ import
     Navbar,
     NavbarBrand,
     NavbarToggler,
-} from "reactstrap"
+} from "reactstrap";
 
-import Login from "./login"
+import Login from "./login";
 
 class NavBar extends Component
 {
@@ -42,7 +42,7 @@ class NavBar extends Component
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                <Login></Login>
+                                <Login contract="eosio"></Login>
                             </NavItem>
                         </Nav>
                     </Collapse>
