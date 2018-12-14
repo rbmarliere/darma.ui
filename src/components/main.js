@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-import NavBar from "./navbar"
-import ProjectCard from "./projectCard"
-import Footer from "./footer"
+import NavBar from "./navbar";
+import ProjectCard from "./projectCard";
+import Footer from "./footer";
 
 class Main extends Component
 {
