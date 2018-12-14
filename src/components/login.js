@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "reactstrap";
-import { Api, JsonRpc, JsSignatureProvider } from "eosjs";
+import { Api, JsonRpc } from "eosjs";
 import ScatterJS from "scatterjs-core";
 import ScatterEOS from "scatterjs-plugin-eosjs2";
 
@@ -28,7 +28,7 @@ class Login extends Component
         try {
             ScatterJS.scatter.connect( this.contract ).then( (connected) => {
                 if ( ! connected )
-                    return console.log("Issue Connecting");
+                    return false;
 
                 const
                     scatter = ScatterJS.scatter,
@@ -46,12 +46,44 @@ class Login extends Component
         }
     }
 
+    trx( action, data )
+    {
+        return this.eos.transact({
+            actions: [{
+                account: this.contract,
+                name: action,
+                authorization: [{
+                    actor: this.account.name,
+                    permission: this.account.authority
+                }],
+                data: {
+                    ...data
+                },
+            }]
+        }, {
+            blocksBehind: 3,
+            expireSeconds: 30,
+        });
+    }
+
     render()
     {
+        const action = "buyrambytes";
+        const data = {
+            buyer: "accountnum11",
+            payer: "accountnum11",
+            receiver: "accountnum11",
+            bytes: 100
+        };
         return (
-            <NavLink className="lightgray" onClick={ () => this.login() } href="#">
+            <div>
+                <NavLink className="lightgray" onClick={ () => this.login() } href="#">
                 login
-            </NavLink>
+                </NavLink>
+                <NavLink className="lightgray" onClick={ () => this.trx(action,data) } href="#">
+                test tx
+                </NavLink>
+            </div>
         );
     }
 }
