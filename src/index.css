@@ -28,6 +28,13 @@ footer p {
     margin-top: 1rem;
 }
 
+footer a {
+    color: #f8f8f8 !important;
+}
+footer a:hover {
+    color: #aaaaaa !important;
+}
+
 .lightgray {
     color: #f8f8f8 !important;
 }

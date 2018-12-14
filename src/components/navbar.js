@@ -5,7 +5,6 @@ import
     Collapse,
     Nav,
     NavItem,
-    NavLink,
     Navbar,
     NavbarBrand,
     NavbarToggler,
@@ -36,11 +35,6 @@ class NavBar extends Component
                     <NavbarToggler onClick={ this.toggle } />
                     <Collapse isOpen={ this.state.isOpen } navbar>
                         <Nav className="ml-auto" navbar>
-                            <NavItem>
-                                <NavLink className="lightgray" href="https://github.com/rbmarliere/darma">
-                                    git
-                                </NavLink>
-                            </NavItem>
                             <NavItem>
                                 <Login contract="eosio"></Login>
                             </NavItem>
