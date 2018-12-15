@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import Login from "./login";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import
 {
     Collapse,
@@ -9,8 +10,6 @@ import
     NavbarBrand,
     NavbarToggler,
 } from "reactstrap";
-
-import Login from "./login";
 
 class NavBar extends Component
 {
@@ -31,7 +30,11 @@ class NavBar extends Component
         return (
             <div>
                 <Navbar expand="md" dark>
-                    <NavbarBrand className="lightgray" href="/">darma</NavbarBrand>
+                    <NavbarBrand className="lightgray" href="/">
+                        <FontAwesomeIcon icon={ ["fas", "dharmachakra"] } size="lg"/>
+                        &nbsp;
+                        darma
+                    </NavbarBrand>
                     <NavbarToggler onClick={ this.toggle } />
                     <Collapse isOpen={ this.state.isOpen } navbar>
                         <Nav className="ml-auto" navbar>
