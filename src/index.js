@@ -13,4 +13,3 @@ library.add( faDharmachakra, faGithub );
 
 ReactDOM.render(<Main />, document.getElementById("root"));
 
-serviceWorker.unregister();
