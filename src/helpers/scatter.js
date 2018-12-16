@@ -13,28 +13,28 @@ const network = {
 export const scatterLogin = (dispatch) =>
 {
     ScatterJS.plugins( new ScatterEOS() );
-    try {
-        ScatterJS.scatter.connect("eosio").then( (connected) => {
-            if ( ! connected )
-                return false;
+    ScatterJS.scatter.connect("eosio").then( (connected) => {
+        if ( ! connected )
+            return false;
 
-            const
-                scatter = ScatterJS.scatter,
-                requiredFields = { accounts: [network] };
+        const
+            scatter = ScatterJS.scatter,
+            requiredFields = { accounts: [network] };
 
-            scatter.getIdentity(requiredFields).then(() => {
-                dispatch( login(scatter) );
-            });
-
-            window.ScatterJS = null;
+        scatter.getIdentity(requiredFields).then(() => {
+            dispatch( login(scatter) );
+        }).catch((error) => {
+            if ( error.type === "identity_rejected" )
+                dispatch( logout() );
         });
-    } catch (error) {
-        // ignore
-    }
+
+        window.ScatterJS = null;
+    });
 };
 
 export const scatterLogout = (dispatch) =>
 {
+    ScatterJS.plugins( new ScatterEOS() );
     ScatterJS.scatter.connect("eosio").then( () => { ScatterJS.scatter.forgetIdentity(); });
     dispatch( logout() );
 };

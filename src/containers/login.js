@@ -7,6 +7,7 @@ class Login extends Component
 {
     componentDidMount()
     {
+        this.props.login();
     }
 
     render()
