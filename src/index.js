@@ -1,7 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Main from "./components/main";
-import * as serviceWorker from "./serviceWorker";
+
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import { loadState, saveState } from "./storage";
+import Reducer from "./reducers";
 
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -11,5 +15,14 @@ import { faDharmachakra } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 library.add( faDharmachakra, faGithub );
 
-ReactDOM.render(<Main />, document.getElementById("root"));
+const state = loadState();
+const store = createStore( Reducer, state );
+store.subscribe( () => { saveState({ scatter: store.getState().scatter }); } );
+
+ReactDOM.render(
+    <Provider store={ store }>
+        <Main/>,
+    </Provider>,
+    document.getElementById("root")
+);
 

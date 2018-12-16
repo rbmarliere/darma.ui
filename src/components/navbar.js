@@ -39,7 +39,7 @@ class NavBar extends Component
                     <Collapse isOpen={ this.state.isOpen } navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <Login contract="eosio"></Login>
+                                <Login/>
                             </NavItem>
                         </Nav>
                     </Collapse>

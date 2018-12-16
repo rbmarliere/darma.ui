@@ -1,92 +1,82 @@
-import React, { Component } from "react";
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { login, logout } from "../actions";
 import { NavLink } from "reactstrap";
-import { Api, JsonRpc } from "eosjs";
 import ScatterJS from "scatterjs-core";
 import ScatterEOS from "scatterjs-plugin-eosjs2";
 
-const
-    endpoint = "http://10.197.70.202:8888",
-    network = {
-        blockchain: "eos",
-        chainId: "f29e900c77f2798c445245b21ed431a2814b28635f0bee57230080fa54982805",
-        host: "10.197.70.202",
-        port: 8888,
-        protocol: "http"
+const network = {
+    blockchain: "eos",
+    chainId: "f29e900c77f2798c445245b21ed431a2814b28635f0bee57230080fa54982805",
+    host: "10.197.70.202",
+    port: 8888,
+    protocol: "http"
+};
+
+const Login =
+    ({ scatter, login, logout }) => {
+        if ( scatter !== null ) {
+            return (
+                <NavLink
+                    className="lightgray"
+                    onClick={ () => {
+                        ScatterJS.scatter.connect("eosio").then( () => { ScatterJS.scatter.forgetIdentity(); });
+                        logout();
+                    } }
+                    href="#">
+                    { scatter.identity.accounts.find( (x) => x.blockchain === "eos" ).name } - logout
+                </NavLink>
+            );
+        } else {
+            return (
+                <NavLink
+                    className="lightgray"
+                    onClick={login}
+                    href="#">
+                    login
+                </NavLink>
+            );
+        }
     };
 
-class Login extends Component
-{
-    constructor(props)
-    {
-        super(props);
-        this.contract = props.contract;
-    }
+Login.propTypes = {
+    scatter: PropTypes.object,
+    login: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired
+};
 
-    login()
-    {
-        ScatterJS.plugins( new ScatterEOS() );
-        try {
-            ScatterJS.scatter.connect( this.contract ).then( (connected) => {
-                if ( ! connected )
-                    return false;
+const mapStateToProps = state => { return { scatter: state.scatter }; };
 
-                const
-                    scatter = ScatterJS.scatter,
-                    requiredFields = { accounts: [network] };
+const mapDispatchToProps =
+    dispatch => {
+        return {
+            login: () => {
+                ScatterJS.plugins( new ScatterEOS() );
+                try {
+                    ScatterJS.scatter.connect("eosio").then( (connected) => {
+                        if ( ! connected )
+                            return false;
 
-                scatter.getIdentity(requiredFields).then(() => {
-                    this.account = scatter.identity.accounts.find( (x) => x.blockchain === "eos" );
-                    const rpc = new JsonRpc(endpoint);
-                    this.eos = scatter.eos( network, Api, { rpc } );
-                });
-                window.ScatterJS = null;
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    }
+                        const
+                            scatter = ScatterJS.scatter,
+                            requiredFields = { accounts: [network] };
 
-    trx( action, data )
-    {
-        return this.eos.transact({
-            actions: [{
-                account: this.contract,
-                name: action,
-                authorization: [{
-                    actor: this.account.name,
-                    permission: this.account.authority
-                }],
-                data: {
-                    ...data
-                },
-            }]
-        }, {
-            blocksBehind: 3,
-            expireSeconds: 30,
-        });
-    }
+                        scatter.getIdentity(requiredFields).then(() => {
+                            dispatch( login(scatter) );
+                        });
 
-    render()
-    {
-        const action = "buyrambytes";
-        const data = {
-            buyer: "accountnum11",
-            payer: "accountnum11",
-            receiver: "accountnum11",
-            bytes: 100
+                        window.ScatterJS = null;
+                    });
+                } catch (error) {
+                    // ignore
+                }
+            },
+            logout: () => {
+                dispatch( logout() );
+            }
         };
-        return (
-            <div>
-                <NavLink className="lightgray" onClick={ () => this.login() } href="#">
-                login
-                </NavLink>
-                <NavLink className="lightgray" onClick={ () => this.trx(action,data) } href="#">
-                test tx
-                </NavLink>
-            </div>
-        );
-    }
-}
+    };
 
-export default Login;
+export default connect( mapStateToProps, mapDispatchToProps )(Login);
 
