@@ -4,8 +4,8 @@ import Main from "./components/main";
 
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import { loadState, saveState } from "./storage";
-import Reducer from "./reducers";
+import { loadState, saveState } from "./helpers/storage";
+import Reducer from "./helpers/reducers";
 
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
