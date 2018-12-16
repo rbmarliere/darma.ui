@@ -14,7 +14,7 @@ code {
 }
 
 footer {
-    background-color: #0b2948;
+    background-color: #1d2c63;
     max-width: 1024px;
     margin: auto;
     height: auto;
@@ -40,7 +40,7 @@ footer a:hover {
 }
 
 .navbar {
-    background-color: #044c84;
+    background-color: #46668d;
     border-bottom: 10px solid #e7e7e7;
     max-width: 1024px;
     margin: auto;
