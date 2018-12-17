@@ -16,10 +16,10 @@ class Login extends Component
     }
 }
 
-const mapStateToProps = state => { return { scatter: state.scatter }; };
+const mapStateToProps = (state) => { return { scatter: state.scatter }; };
 
 const mapDispatchToProps =
-    dispatch => {
+    (dispatch) => {
         return {
             login: () => { scatterLogin(dispatch); },
             logout: () => { scatterLogout(dispatch); }

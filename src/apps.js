@@ -2,30 +2,27 @@ const apps =
 [
     {
         "id": 1,
-        "title": "DRAMA",
-        "type": "Shitcoin",
-        "text": "True decentralized shit token",
-        "url": "http://www.drama.shit/",
+        "contract": "dramatokennn",
         "image": "drama.png",
-        "contract": "dramatokennn"
+        "text": "True decentralized shit token",
+        "title": "DRAMA",
+        "url": "http://www.drama.shit/",
     },
     {
         "id": 2,
-        "title": "DRAMA",
-        "type": "Shitcoin",
-        "text": "True decentralized shit token",
-        "url": "http://www.drama.shit/",
+        "contract": "dramatokennn",
         "image": "drama.png",
-        "contract": "dramatokennn"
+        "text": "True decentralized shit token",
+        "title": "DRAMA",
+        "url": "http://www.drama.shit/",
     },
     {
         "id": 3,
-        "title": "DRAMA",
-        "type": "Shitcoin",
-        "text": "True decentralized shit token",
-        "url": "http://www.drama.shit/",
+        "contract": "dramatokennn",
         "image": "drama.png",
-        "contract": "dramatokennn"
+        "text": "True decentralized shit token",
+        "title": "DRAMA",
+        "url": "http://www.drama.shit/",
     }
 ];
 

@@ -2,6 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Main from "./components/main";
 
+import ScatterJS from "scatterjs-core";
+import ScatterEOS from "scatterjs-plugin-eosjs2";
+
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { loadState, saveState } from "./helpers/storage";
@@ -14,6 +17,8 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faDharmachakra } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 library.add( faDharmachakra, faGithub );
+
+ScatterJS.plugins( new ScatterEOS() );
 
 const state = loadState();
 const store = createStore( Reducer, state );

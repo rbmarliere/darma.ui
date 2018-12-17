@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Project from "./project";
+import Project from "../containers/project";
 import apps from "../apps";
 import {
     Col,
