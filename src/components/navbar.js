@@ -32,8 +32,8 @@ class NavBar extends Component
                 <Navbar expand="md" dark>
                     <NavbarBrand className="lightgray" href="/">
                         <FontAwesomeIcon icon={ ["fas", "dharmachakra"] } size="lg"/>
-                        &nbsp;
-                        darma
+                            &nbsp;
+                            darma
                     </NavbarBrand>
                     <NavbarToggler onClick={ this.toggle } />
                     <Collapse isOpen={ this.state.isOpen } navbar>

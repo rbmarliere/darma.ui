@@ -1,16 +1,16 @@
 import React from "react";
 import NavBar from "./navbar";
-import ProjectCard from "./projectCard";
+import ProjectList from "./projectList";
 import Footer from "./footer";
 
 const Main = () =>
 {
     return (
-        <React.Fragment>
+        <div className="main">
             <NavBar></NavBar>
-            <ProjectCard></ProjectCard>
+            <ProjectList></ProjectList>
             <Footer></Footer>
-        </React.Fragment>
+        </div>
     );
 };
 

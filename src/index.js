@@ -21,7 +21,7 @@ store.subscribe( () => { saveState({ scatter: store.getState().scatter }); } );
 
 ReactDOM.render(
     <Provider store={ store }>
-        <Main/>,
+        <Main/>
     </Provider>,
     document.getElementById("root")
 );
