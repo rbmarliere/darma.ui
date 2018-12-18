@@ -55,7 +55,7 @@ export const scatterSell = ( dispatch, scatter, contract, quantity ) =>
                 from: account,
                 receiver: contract,
                 stake_net_quantity: "0.0000 EOS",
-                stake_cpu_quantity: quantity + " EOS",
+                stake_cpu_quantity: quantity,
                 transfer: false
             }
         }]
