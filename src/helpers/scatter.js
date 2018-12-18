@@ -38,7 +38,7 @@ export const scatterLogout = (dispatch) =>
     dispatch( logout() );
 };
 
-export const scatterSell = ( dispatch, scatter, contract ) =>
+export const scatterSell = ( dispatch, scatter, contract, quantity ) =>
 {
     const account = scatter.identity.accounts.find( (x) => x.blockchain === "eos" ).name;
     const rpc = new JsonRpc(endpoint);
@@ -55,7 +55,7 @@ export const scatterSell = ( dispatch, scatter, contract ) =>
                 from: account,
                 receiver: contract,
                 stake_net_quantity: "0.0000 EOS",
-                stake_cpu_quantity: "1.0000 EOS",
+                stake_cpu_quantity: quantity + " EOS",
                 transfer: false
             }
         }]

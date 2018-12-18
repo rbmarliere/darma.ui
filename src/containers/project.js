@@ -7,7 +7,7 @@ const mapStateToProps = (state) => { return { scatter: state.scatter }; };
 const mapDispatchToProps =
     (dispatch) => {
         return {
-            sell: ( scatter, contract ) => { scatterSell( dispatch, scatter, contract ); },
+            sell: ( scatter, contract, quantity ) => { scatterSell( dispatch, scatter, contract, quantity ); },
         };
     };
 

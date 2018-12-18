@@ -6,8 +6,11 @@ import {
     CardBody,
     CardImg,
     CardText,
-    CardTitle
+    CardTitle,
+    Container,
+    Row
 } from "reactstrap";
+import ModalSell from "./modalSell";
 
 const Project =
     (props) => (
@@ -20,15 +23,15 @@ const Project =
                 <CardText>
                     {props.text}
                 </CardText>
-                <a href={ props.url }>
-                    <Button color="info">
-                            Info
-                    </Button>
-                </a>
-                &nbsp;
-                <Button color="danger" onClick={ () => props.sell( props.scatter, props.contract ) }>
-                    Sell Bandwidth
-                </Button>
+                <Container><Row>
+                    <a href={ props.url }>
+                        <Button color="info">
+                                Info
+                        </Button>
+                    </a>
+                    &nbsp;
+                    <ModalSell {...props}/>
+                </Row></Container>
             </CardBody>
         </Card>
     );
