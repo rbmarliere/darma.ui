@@ -11,6 +11,7 @@ import
     ModalBody,
     ModalFooter
 } from "reactstrap";
+import NumberFormat from "react-number-format";
 
 class ModalSell extends Component
 {
@@ -20,6 +21,7 @@ class ModalSell extends Component
         this.state = { modal: false, quantity: 0 };
         this.toggle = this.toggle.bind(this);
         this.sell = this.sell.bind(this);
+        this.formatChars = { "*": "[0-9]+", "9": "[0-9]" };
     }
 
     toggle()
@@ -49,8 +51,13 @@ class ModalSell extends Component
                             <Label>Quantity</Label>
                             <Input
                                 onChange={ this.qtyChange.bind(this) }
-                                type="number"
-                                placeholder="stake size for delegation" />
+                                type="text"
+                                placeholder="stake size for delegation"
+                                allowNegative={false}
+                                decimalScale={4}
+                                suffix=" EOS"
+                                tag={NumberFormat}
+                            />
                         </FormGroup>
                     </ModalBody>
                     <ModalFooter>
