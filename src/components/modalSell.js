@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import
 {
     Button,
-    FormGroup,
+    Container,
     Input,
     Label,
     Modal,
-    ModalHeader,
     ModalBody,
-    ModalFooter
+    ModalFooter,
+    Row
 } from "reactstrap";
 import NumberFormat from "react-number-format";
 
@@ -18,7 +18,7 @@ class ModalSell extends Component
     constructor(props)
     {
         super(props);
-        this.state = { modal: false, quantity: 0 };
+        this.state = { modal: false, cpuQuantity: 0, netQuantity: 0 };
         this.toggle = this.toggle.bind(this);
         this.sell = this.sell.bind(this);
         this.formatChars = { "*": "[0-9]+", "9": "[0-9]" };
@@ -26,17 +26,22 @@ class ModalSell extends Component
 
     toggle()
     {
-        this.setState({ modal: !this.state.modal, quantity: this.state.quantity });
+        this.setState({ modal: !this.state.modal, cpuQuantity: this.state.cpuQuantity, netQuantity: this.state.netQuantity });
     }
 
-    qtyChange(e)
+    cpuChange(e)
     {
-        this.setState({ modal: this.state.modal, quantity: e.target.value });
+        this.setState({ modal: this.state.modal, cpuQuantity: e.target.value, netQuantity: this.state.netQuantity });
+    }
+
+    netChange(e)
+    {
+        this.setState({ modal: this.state.modal, cpuQuantity: this.state.cpuQuantity, netQuantity: e.target.value });
     }
 
     sell()
     {
-        this.props.sell( this.props.scatter, this.props.contract, this.state.quantity );
+        this.props.sell( this.props.scatter, this.props.contract, this.state.cpuQuantity, this.state.netQuantity );
     }
 
     render()
@@ -45,20 +50,33 @@ class ModalSell extends Component
             <div>
                 <Button color="danger" onClick={ this.toggle }>Sell Bandwidth</Button>
                 <Modal isOpen={ this.state.modal } toggle={ this.toggle }>
-                    <ModalHeader toggle={ this.toggle }></ModalHeader>
                     <ModalBody>
-                        <FormGroup>
-                            <Label>Quantity</Label>
-                            <Input
-                                onChange={ this.qtyChange.bind(this) }
-                                type="text"
-                                placeholder="stake size for delegation"
-                                allowNegative={false}
-                                decimalScale={4}
-                                suffix=" EOS"
-                                tag={NumberFormat}
-                            />
-                        </FormGroup>
+                        <Container>
+                            <Row className="p-2">
+                                <Label>CPU</Label>
+                                <Input
+                                    onChange={ this.cpuChange.bind(this) }
+                                    type="text"
+                                    placeholder="stake size for delegation"
+                                    allowNegative={false}
+                                    decimalScale={4}
+                                    suffix=" EOS"
+                                    tag={NumberFormat}
+                                />
+                            </Row>
+                            <Row className="p-2">
+                                <Label>NET</Label>
+                                <Input
+                                    onChange={ this.netChange.bind(this) }
+                                    type="text"
+                                    placeholder="stake size for delegation"
+                                    allowNegative={false}
+                                    decimalScale={4}
+                                    suffix=" EOS"
+                                    tag={NumberFormat}
+                                />
+                            </Row>
+                        </Container>
                     </ModalBody>
                     <ModalFooter>
                         <Button color="danger" onClick={ this.sell }>
