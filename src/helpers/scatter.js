@@ -84,3 +84,61 @@ export const scatterStake = ( dispatch, scatter, contract, cpu_quantity, net_qua
     }
 };
 
+export const scatterUnstake = async ( dispatch, scatter, contract ) =>
+{
+    const account = scatter.identity.accounts.find( (x) => x.blockchain === "eos" ).name;
+    const rpc = new JsonRpc(endpoint);
+    const eos = scatter.eos( network, Api, { rpc });
+    const deleg =
+        await rpc.get_table_rows(
+            {
+                code: "eosio",
+                scope: account,
+                table: "delband",
+                lower_bound: contract
+            }
+        );
+
+    try {
+        const cpu_quantity = deleg.rows[0].cpu_weight;
+        const net_quantity = deleg.rows[0].net_weight;
+        eos.transact({
+            actions: [
+                {
+                    account: "eosio",
+                    name: "undelegatebw",
+                    authorization: [{
+                        actor: account,
+                        permission: "active"
+                    }],
+                    data: {
+                        from: account,
+                        receiver: contract,
+                        unstake_net_quantity: net_quantity,
+                        unstake_cpu_quantity: cpu_quantity,
+                        transfer: false
+                    }
+                },
+                {
+                    account: contract,
+                    name: "unstake",
+                    authorization: [{
+                        actor: account,
+                        permission: "active"
+                    }],
+                    data: {
+                        holder: account
+                    }
+                },
+            ]
+        },{
+            blocksBehind: 5,
+            expireSeconds: 30
+        });
+    } catch (err) {
+        if (err instanceof RpcError) {
+            // dispatch
+        }
+    }
+};
+

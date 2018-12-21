@@ -21,7 +21,7 @@ const Project =
                     { props.title }
                 </CardTitle>
                 <CardText>
-                    {props.text}
+                    { props.text }
                 </CardText>
                 <Container><Row>
                     <a href={ props.url }>
@@ -31,6 +31,8 @@ const Project =
                     </a>
                     &nbsp;
                     <Stake {...props}/>
+                    &nbsp;
+                    <Button color="success" onClick={ () => props.unstake( props.scatter, props.contract ) }>Unstake</Button>
                 </Row></Container>
             </CardBody>
         </Card>
@@ -44,7 +46,8 @@ Project.propTypes =
     title: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
     scatter: PropTypes.object.isRequired,
-    stake: PropTypes.func.isRequired
+    stake: PropTypes.func.isRequired,
+    unstake: PropTypes.func.isRequired
 };
 
 export default Project;
