@@ -47,7 +47,7 @@ class Stake extends Component
     {
         return (
             <div>
-                <Button color="danger" onClick={ this.toggle }>Stake</Button>
+                <Button className="btn-block" color="danger" onClick={ this.toggle }>Stake</Button>
                 <Modal isOpen={ this.state.modal } toggle={ this.toggle }>
                     <ModalBody>
                         <Container>

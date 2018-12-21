@@ -7,6 +7,7 @@ import {
     CardImg,
     CardText,
     CardTitle,
+    Col,
     Container,
     Row
 } from "reactstrap";
@@ -23,17 +24,38 @@ const Project =
                 <CardText>
                     { props.text }
                 </CardText>
-                <Container><Row>
-                    <a href={ props.url }>
-                        <Button color="info">
-                                Info
-                        </Button>
-                    </a>
-                    &nbsp;
-                    <Stake {...props}/>
-                    &nbsp;
-                    <Button color="success" onClick={ () => props.unstake( props.scatter, props.contract ) }>Unstake</Button>
-                </Row></Container>
+                <Container>
+                    <Row className="p-2">
+                        <Col>
+                            <a href={ props.url }>
+                                <Button className="btn-block" color="info">
+                                    Info
+                                </Button>
+                            </a>
+                        </Col>
+                        <Col>
+                            <Button
+                                className="btn-block"
+                                color="primary"
+                                onClick={ () => props.claim( props.scatter, props.contract ) }>
+                                Claim
+                            </Button>
+                        </Col>
+                    </Row>
+                    <Row className="p-2">
+                        <Col>
+                            <Stake {...props}/>
+                        </Col>
+                        <Col>
+                            <Button
+                                className="btn-block"
+                                color="success"
+                                onClick={ () => props.unstake( props.scatter, props.contract ) }>
+                                Unstake
+                            </Button>
+                        </Col>
+                    </Row>
+                </Container>
             </CardBody>
         </Card>
     );

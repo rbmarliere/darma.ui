@@ -142,3 +142,35 @@ export const scatterUnstake = async ( dispatch, scatter, contract ) =>
     }
 };
 
+export const scatterClaim = ( dispatch, scatter, contract ) =>
+{
+    const account = scatter.identity.accounts.find( (x) => x.blockchain === "eos" ).name;
+    const rpc = new JsonRpc(endpoint);
+    const eos = scatter.eos( network, Api, { rpc });
+    try {
+        eos.transact({
+            actions: [
+                {
+                    account: contract,
+                    name: "claim",
+                    authorization: [{
+                        actor: account,
+                        permission: "active"
+                    }],
+                    data: {
+                        holder: account
+                    }
+                },
+            ]
+        },{
+            blocksBehind: 5,
+            expireSeconds: 30
+        });
+    } catch (err) {
+        if (err instanceof RpcError) {
+            // dispatch
+        }
+    }
+};
+
+
