@@ -59,6 +59,7 @@ class ModalSell extends Component
                                     placeholder="stake size for delegation"
                                     allowNegative={false}
                                     decimalScale={4}
+                                    fixedDecimalScale={true}
                                     suffix=" EOS"
                                     tag={NumberFormat}
                                 />
@@ -71,6 +72,7 @@ class ModalSell extends Component
                                     placeholder="stake size for delegation"
                                     allowNegative={false}
                                     decimalScale={4}
+                                    fixedDecimalScale={true}
                                     suffix=" EOS"
                                     tag={NumberFormat}
                                 />
