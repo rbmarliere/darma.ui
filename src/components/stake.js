@@ -13,14 +13,14 @@ import
 } from "reactstrap";
 import NumberFormat from "react-number-format";
 
-class ModalSell extends Component
+class Stake extends Component
 {
     constructor(props)
     {
         super(props);
         this.state = { modal: false, cpuQuantity: 0, netQuantity: 0 };
         this.toggle = this.toggle.bind(this);
-        this.sell = this.sell.bind(this);
+        this.stake = this.stake.bind(this);
     }
 
     toggle()
@@ -38,16 +38,16 @@ class ModalSell extends Component
         this.setState({ modal: this.state.modal, cpuQuantity: this.state.cpuQuantity, netQuantity: e.target.value });
     }
 
-    sell()
+    stake()
     {
-        this.props.sell( this.props.scatter, this.props.contract, this.state.cpuQuantity, this.state.netQuantity );
+        this.props.stake( this.props.scatter, this.props.contract, this.state.cpuQuantity, this.state.netQuantity );
     }
 
     render()
     {
         return (
             <div>
-                <Button color="danger" onClick={ this.toggle }>Sell Bandwidth</Button>
+                <Button color="danger" onClick={ this.toggle }>Stake</Button>
                 <Modal isOpen={ this.state.modal } toggle={ this.toggle }>
                     <ModalBody>
                         <Container>
@@ -80,7 +80,7 @@ class ModalSell extends Component
                         </Container>
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="danger" onClick={ this.sell }>
+                        <Button color="danger" onClick={ this.stake }>
                             Sell Bandwidth
                         </Button>
                         <Button color="secondary" onClick={ this.toggle }>Cancel</Button>
@@ -91,12 +91,12 @@ class ModalSell extends Component
     }
 }
 
-ModalSell.propTypes =
+Stake.propTypes =
 {
     contract: PropTypes.string.isRequired,
     scatter: PropTypes.object.isRequired,
-    sell: PropTypes.func.isRequired
+    stake: PropTypes.func.isRequired
 };
 
-export default ModalSell;
+export default Stake;
 

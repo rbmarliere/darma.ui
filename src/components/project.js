@@ -10,7 +10,7 @@ import {
     Container,
     Row
 } from "reactstrap";
-import ModalSell from "./modalSell";
+import Stake from "./stake";
 
 const Project =
     (props) => (
@@ -30,7 +30,7 @@ const Project =
                         </Button>
                     </a>
                     &nbsp;
-                    <ModalSell {...props}/>
+                    <Stake {...props}/>
                 </Row></Container>
             </CardBody>
         </Card>
@@ -44,7 +44,7 @@ Project.propTypes =
     title: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
     scatter: PropTypes.object.isRequired,
-    sell: PropTypes.func.isRequired
+    stake: PropTypes.func.isRequired
 };
 
 export default Project;

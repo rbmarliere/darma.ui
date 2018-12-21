@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { scatterSell } from "../helpers/scatter";
+import { scatterStake } from "../helpers/scatter";
 import Project from "../components/project";
 
 const mapStateToProps = (state) => { return { scatter: state.scatter }; };
@@ -7,7 +7,7 @@ const mapStateToProps = (state) => { return { scatter: state.scatter }; };
 const mapDispatchToProps =
     (dispatch) => {
         return {
-            sell: ( scatter, contract, cpu_quantity, net_quantity ) => { scatterSell( dispatch, scatter, contract, cpu_quantity, net_quantity ); },
+            stake: ( scatter, contract, cpu_quantity, net_quantity ) => { scatterStake( dispatch, scatter, contract, cpu_quantity, net_quantity ); },
         };
     };
 
