@@ -1,5 +1,5 @@
 import { login, logout } from "./actions";
-import { Api, JsonRpc } from "eosjs";
+import { Api, JsonRpc, RpcError } from "eosjs";
 import ScatterJS from "scatterjs-core";
 
 const endpoint = "http://10.197.70.202:8888";
@@ -43,25 +43,44 @@ export const scatterSell = ( dispatch, scatter, contract, cpu_quantity, net_quan
     const account = scatter.identity.accounts.find( (x) => x.blockchain === "eos" ).name;
     const rpc = new JsonRpc(endpoint);
     const eos = scatter.eos( network, Api, { rpc });
-    eos.transact({
-        actions: [{
-            account: "eosio",
-            name: "delegatebw",
-            authorization: [{
-                actor: account,
-                permission: "active"
-            }],
-            data: {
-                from: account,
-                receiver: contract,
-                stake_net_quantity: net_quantity,
-                stake_cpu_quantity: cpu_quantity,
-                transfer: false
-            }
-        }]
-    },{
-        blocksBehind: 3,
-        expireSeconds: 30
-    });
+    try {
+        eos.transact({
+            actions: [
+                {
+                    account: "eosio",
+                    name: "delegatebw",
+                    authorization: [{
+                        actor: account,
+                        permission: "active"
+                    }],
+                    data: {
+                        from: account,
+                        receiver: contract,
+                        stake_net_quantity: net_quantity,
+                        stake_cpu_quantity: cpu_quantity,
+                        transfer: false
+                    }
+                },
+                {
+                    account: contract,
+                    name: "stake",
+                    authorization: [{
+                        actor: account,
+                        permission: "active"
+                    }],
+                    data: {
+                        holder: account
+                    }
+                },
+            ]
+        },{
+            blocksBehind: 5,
+            expireSeconds: 30
+        });
+    } catch (err) {
+        if (err instanceof RpcError) {
+            // dispatch
+        }
+    }
 };
 

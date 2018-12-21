@@ -2,7 +2,7 @@ const apps =
 [
     {
         "id": 1,
-        "contract": "dramatokennn",
+        "contract": "darmatoken11",
         "image": "drama.png",
         "text": "True decentralized shit token",
         "title": "DRAMA",
@@ -10,7 +10,7 @@ const apps =
     },
     {
         "id": 2,
-        "contract": "dramatokennn",
+        "contract": "darmatoken11",
         "image": "drama.png",
         "text": "True decentralized shit token",
         "title": "DRAMA",
@@ -18,7 +18,7 @@ const apps =
     },
     {
         "id": 3,
-        "contract": "dramatokennn",
+        "contract": "darmatoken11",
         "image": "drama.png",
         "text": "True decentralized shit token",
         "title": "DRAMA",

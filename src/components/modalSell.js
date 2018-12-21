@@ -21,7 +21,6 @@ class ModalSell extends Component
         this.state = { modal: false, cpuQuantity: 0, netQuantity: 0 };
         this.toggle = this.toggle.bind(this);
         this.sell = this.sell.bind(this);
-        this.formatChars = { "*": "[0-9]+", "9": "[0-9]" };
     }
 
     toggle()
