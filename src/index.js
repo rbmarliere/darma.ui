@@ -16,7 +16,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faDharmachakra } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-library.add( faDharmachakra, faGithub );
+import { faTelegram } from "@fortawesome/free-brands-svg-icons";
+library.add( faDharmachakra, faGithub, faTelegram );
 
 ScatterJS.plugins( new ScatterEOS() );
 
