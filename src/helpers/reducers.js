@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
 import {
     LOGIN,
-    LOGOUT
+    LOGOUT,
+    SHOW_ERROR,
+    HIDE_ERROR
 } from "./actions";
 
-function scatter(state = [], action)
+function scatter(state = null, action)
 {
     switch (action.type) {
     case LOGIN:
@@ -16,8 +18,21 @@ function scatter(state = [], action)
     }
 }
 
+function error(state = null, action)
+{
+    switch (action.type) {
+    case SHOW_ERROR:
+        return action.error;
+    case HIDE_ERROR:
+        return null;
+    default:
+        return state;
+    }
+}
+
 const Reducer = combineReducers({
-    scatter
+    scatter,
+    error
 });
 
 export default Reducer;

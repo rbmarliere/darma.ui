@@ -40,6 +40,7 @@ class Stake extends Component
 
     stake()
     {
+        this.toggle();
         this.props.stake( this.props.scatter, this.props.contract, this.state.cpuQuantity, this.state.netQuantity );
     }
 
@@ -94,7 +95,7 @@ class Stake extends Component
 Stake.propTypes =
 {
     contract: PropTypes.string.isRequired,
-    scatter: PropTypes.object.isRequired,
+    scatter: PropTypes.object,
     stake: PropTypes.func.isRequired
 };
 

@@ -12,52 +12,56 @@ import {
     Row
 } from "reactstrap";
 import Stake from "./stake";
+import Error from "./error";
 
 const Project =
     (props) => (
-        <Card>
-            <CardImg top width="100%" src={ require( "../assets/" + props.image ) }/>
-            <CardBody>
-                <CardTitle>
-                    { props.title }
-                </CardTitle>
-                <CardText>
-                    { props.text }
-                </CardText>
-                <Container>
-                    <Row className="p-2">
-                        <Col>
-                            <a href={ props.url }>
-                                <Button className="btn-block" color="info">
-                                    Info
+        <div>
+            <Card>
+                <CardImg top width="100%" src={ require( "../assets/" + props.image ) }/>
+                <CardBody>
+                    <CardTitle>
+                        { props.title }
+                    </CardTitle>
+                    <CardText>
+                        { props.text }
+                    </CardText>
+                    <Container>
+                        <Row className="p-2">
+                            <Col>
+                                <a href={ props.url }>
+                                    <Button className="btn-block" color="info">
+                                        Info
+                                    </Button>
+                                </a>
+                            </Col>
+                            <Col>
+                                <Button
+                                    className="btn-block"
+                                    color="primary"
+                                    onClick={ () => props.claim( props.scatter, props.contract ) }>
+                                    Claim
                                 </Button>
-                            </a>
-                        </Col>
-                        <Col>
-                            <Button
-                                className="btn-block"
-                                color="primary"
-                                onClick={ () => props.claim( props.scatter, props.contract ) }>
-                                Claim
-                            </Button>
-                        </Col>
-                    </Row>
-                    <Row className="p-2">
-                        <Col>
-                            <Stake {...props}/>
-                        </Col>
-                        <Col>
-                            <Button
-                                className="btn-block"
-                                color="success"
-                                onClick={ () => props.unstake( props.scatter, props.contract ) }>
-                                Unstake
-                            </Button>
-                        </Col>
-                    </Row>
-                </Container>
-            </CardBody>
-        </Card>
+                            </Col>
+                        </Row>
+                        <Row className="p-2">
+                            <Col>
+                                <Stake {...props}/>
+                            </Col>
+                            <Col>
+                                <Button
+                                    className="btn-block"
+                                    color="success"
+                                    onClick={ () => props.unstake( props.scatter, props.contract ) }>
+                                    Unstake
+                                </Button>
+                            </Col>
+                        </Row>
+                    </Container>
+                </CardBody>
+            </Card>
+            <Error {...props}/>
+        </div>
     );
 
 Project.propTypes =
@@ -67,7 +71,7 @@ Project.propTypes =
     text: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
-    scatter: PropTypes.object.isRequired,
+    scatter: PropTypes.object,
     stake: PropTypes.func.isRequired,
     unstake: PropTypes.func.isRequired
 };

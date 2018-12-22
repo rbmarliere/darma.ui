@@ -1,5 +1,5 @@
-import { login, logout } from "./actions";
-import { Api, JsonRpc, RpcError } from "eosjs";
+import { login, logout, showError } from "./actions";
+import { Api, JsonRpc } from "eosjs";
 import ScatterJS from "scatterjs-core";
 
 const endpoint = "http://10.197.70.202:8888";
@@ -11,25 +11,39 @@ const network = {
     protocol: "http"
 };
 
+const handleError =
+    (dispatch, err) => {
+        var msg = typeof err !== "string" ? err.message : err;
+        if (msg === "Cannot read property 'identity' of null")
+            msg = "Please login first";
+        dispatch( showError(msg) );
+    };
+
 export const scatterLogin = (dispatch) =>
 {
-    ScatterJS.scatter.connect("eosio").then( (connected) => {
-        if ( ! connected )
-            return false;
+    ScatterJS.scatter.connect("eosio").then(
+        (connected) => {
+            if ( ! connected ) {
+                dispatch( showError("Couldn't connect to Scatter") );
+                return false;
+            }
 
-        const
-            scatter = ScatterJS.scatter,
-            requiredFields = { accounts: [network] };
+            const
+                scatter = ScatterJS.scatter,
+                requiredFields = { accounts: [network] };
 
-        scatter.getIdentity(requiredFields).then(() => {
-            dispatch( login(scatter) );
-        }).catch((error) => {
-            if ( error.type === "identity_rejected" )
-                dispatch( logout() );
-        });
+            scatter.getIdentity(requiredFields).then(() => {
+                dispatch( login(scatter) );
+            }).catch((error) => {
+                if ( error.type === "identity_rejected" ) {
+                    dispatch( logout() );
+                    dispatch( showError("User rejected identity request") );
+                }
+            });
 
-        window.ScatterJS = null;
-    });
+            window.ScatterJS = null;
+        }
+    );
 };
 
 export const scatterLogout = (dispatch) =>
@@ -40,10 +54,11 @@ export const scatterLogout = (dispatch) =>
 
 export const scatterStake = ( dispatch, scatter, contract, cpu_quantity, net_quantity ) =>
 {
-    const account = scatter.identity.accounts.find( (x) => x.blockchain === "eos" ).name;
-    const rpc = new JsonRpc(endpoint);
-    const eos = scatter.eos( network, Api, { rpc });
     try {
+        const account = scatter.identity.accounts.find( (x) => x.blockchain === "eos" ).name;
+        const rpc = new JsonRpc(endpoint);
+        const eos = scatter.eos( network, Api, { rpc });
+
         eos.transact({
             actions: [
                 {
@@ -76,30 +91,30 @@ export const scatterStake = ( dispatch, scatter, contract, cpu_quantity, net_qua
         },{
             blocksBehind: 5,
             expireSeconds: 30
+        }).catch(err => {
+            dispatch( showError(err.message) );
         });
     } catch (err) {
-        if (err instanceof RpcError) {
-            // dispatch
-        }
+        handleError( dispatch, err );
     }
 };
 
 export const scatterUnstake = async ( dispatch, scatter, contract ) =>
 {
-    const account = scatter.identity.accounts.find( (x) => x.blockchain === "eos" ).name;
-    const rpc = new JsonRpc(endpoint);
-    const eos = scatter.eos( network, Api, { rpc });
-    const deleg =
-        await rpc.get_table_rows(
-            {
-                code: "eosio",
-                scope: account,
-                table: "delband",
-                lower_bound: contract
-            }
-        );
-
     try {
+        const account = scatter.identity.accounts.find( (x) => x.blockchain === "eos" ).name;
+        const rpc = new JsonRpc(endpoint);
+        const eos = scatter.eos( network, Api, { rpc });
+        const deleg =
+            await rpc.get_table_rows(
+                {
+                    code: "eosio",
+                    scope: account,
+                    table: "delband",
+                    lower_bound: contract
+                }
+            );
+
         const cpu_quantity = deleg.rows[0].cpu_weight;
         const net_quantity = deleg.rows[0].net_weight;
         eos.transact({
@@ -134,20 +149,20 @@ export const scatterUnstake = async ( dispatch, scatter, contract ) =>
         },{
             blocksBehind: 5,
             expireSeconds: 30
+        }).catch(err => {
+            dispatch( showError(err.message) );
         });
     } catch (err) {
-        if (err instanceof RpcError) {
-            // dispatch
-        }
+        handleError( dispatch, err );
     }
 };
 
 export const scatterClaim = ( dispatch, scatter, contract ) =>
 {
-    const account = scatter.identity.accounts.find( (x) => x.blockchain === "eos" ).name;
-    const rpc = new JsonRpc(endpoint);
-    const eos = scatter.eos( network, Api, { rpc });
     try {
+        const account = scatter.identity.accounts.find( (x) => x.blockchain === "eos" ).name;
+        const rpc = new JsonRpc(endpoint);
+        const eos = scatter.eos( network, Api, { rpc });
         eos.transact({
             actions: [
                 {
@@ -165,11 +180,11 @@ export const scatterClaim = ( dispatch, scatter, contract ) =>
         },{
             blocksBehind: 5,
             expireSeconds: 30
+        }).catch(err => {
+            dispatch( showError(err.message) );
         });
     } catch (err) {
-        if (err instanceof RpcError) {
-            // dispatch
-        }
+        handleError( dispatch, err );
     }
 };
 

@@ -56,3 +56,8 @@ footer a:hover {
     padding: 1%;
 }
 
+.error {
+    background-color: #d9534f;
+    color: #e7e7e7;
+}
+
