@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Project from "../containers/project";
-import apps from "../apps";
+import apps from "../helpers/apps";
 import {
     Col,
     Container,
