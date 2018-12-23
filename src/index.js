@@ -1,33 +1,42 @@
+/* eslint-disable import/first */
+
 import React from "react";
-import ReactDOM from "react-dom";
+import { BrowserRouter, Route } from "react-router-dom";
+import { render } from "react-dom";
+
+// views
 import Home from "./views/home";
 
+// scatter
 import ScatterJS from "scatterjs-core";
 import ScatterEOS from "scatterjs-plugin-eosjs2";
+ScatterJS.plugins( new ScatterEOS() );
 
-import { createStore } from "redux";
-import { Provider } from "react-redux";
-import { loadState, saveState } from "./helpers/storage";
-import Reducer from "./helpers/reducers";
-
-import "./index.css";
+// style
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./index.css";
 
+// fa
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faDharmachakra } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faTelegram } from "@fortawesome/free-brands-svg-icons";
 library.add( faDharmachakra, faGithub, faTelegram );
 
-ScatterJS.plugins( new ScatterEOS() );
-
+// redux
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import { loadState, saveState } from "./helpers/storage";
+import Reducer from "./helpers/reducers";
 const state = loadState();
 const store = createStore( Reducer, state );
 store.subscribe( () => { saveState({ scatter: store.getState().scatter }); } );
 
-ReactDOM.render(
+render(
     <Provider store={ store }>
-        <Home/>
+        <BrowserRouter>
+            <Route path="/" component={Home} exact />
+        </BrowserRouter>
     </Provider>,
     document.getElementById("root")
 );
