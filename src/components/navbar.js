@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Login from "../containers/login";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import
@@ -30,11 +31,13 @@ class NavBar extends Component
         return (
             <div>
                 <Navbar expand="md" dark>
-                    <NavbarBrand className="lightgray" href="/">
-                        <FontAwesomeIcon icon={ ["fas", "dharmachakra"] } size="lg"/>
+                    <Link to="/">
+                        <NavbarBrand className="lightgray">
+                            <FontAwesomeIcon icon={ ["fas", "dharmachakra"] } size="lg"/>
                             &nbsp;
                             darma
-                    </NavbarBrand>
+                        </NavbarBrand>
+                    </Link>
                     <NavbarToggler onClick={ this.toggle } />
                     <Collapse isOpen={ this.state.isOpen } navbar>
                         <Nav className="ml-auto" navbar>
