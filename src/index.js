@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Main from "./components/main";
+import Home from "./views/home";
 
 import ScatterJS from "scatterjs-core";
 import ScatterEOS from "scatterjs-plugin-eosjs2";
@@ -27,7 +27,7 @@ store.subscribe( () => { saveState({ scatter: store.getState().scatter }); } );
 
 ReactDOM.render(
     <Provider store={ store }>
-        <Main/>
+        <Home/>
     </Provider>,
     document.getElementById("root")
 );

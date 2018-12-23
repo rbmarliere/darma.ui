@@ -1,9 +1,9 @@
 import React from "react";
-import NavBar from "./navbar";
-import ProjectList from "./projectList";
-import Footer from "./footer";
+import NavBar from "../components/navbar";
+import ProjectList from "../components/projectList";
+import Footer from "../components/footer";
 
-const Main = () =>
+const Home = () =>
 {
     return (
         <div className="main">
@@ -14,5 +14,5 @@ const Main = () =>
     );
 };
 
-export default Main;
+export default Home;
 
