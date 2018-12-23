@@ -6,6 +6,7 @@ import { render } from "react-dom";
 
 // views
 import Home from "./views/home";
+import About from "./views/about";
 
 // scatter
 import ScatterJS from "scatterjs-core";
@@ -35,7 +36,10 @@ store.subscribe( () => { saveState({ scatter: store.getState().scatter }); } );
 render(
     <Provider store={ store }>
         <BrowserRouter>
-            <Route path="/" component={Home} exact />
+            <div>
+                <Route path="/"      component={Home} exact />
+                <Route path="/about" component={About} exact />
+            </div>
         </BrowserRouter>
     </Provider>,
     document.getElementById("root")

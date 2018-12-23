@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Footer = () =>
@@ -8,7 +9,12 @@ const Footer = () =>
             <div className="row d-flex justify-content-center pt-2 pb-2">
                 <div className="col-xs-12">
                     <p className="lightgray text-justify">
-                        darma {( new Date().getFullYear() )} &copy; ricardo@eossweden.org &nbsp;
+                        darma {( new Date().getFullYear() )} &copy;
+                        &nbsp;
+                        <Link to="/about">
+                            about us
+                        </Link>
+                        &nbsp;
                         <a href="https://github.com/rbmarliere/darma">
                             <FontAwesomeIcon icon={ ["fab", "github"] } size="lg"/>
                         </a>
