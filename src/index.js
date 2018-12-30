@@ -1,7 +1,7 @@
 /* eslint-disable import/first */
 
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { Router, Route } from "react-router-dom";
 import { render } from "react-dom";
 
 // views
@@ -33,14 +33,25 @@ const state = loadState();
 const store = createStore( Reducer, state );
 store.subscribe( () => { saveState({ scatter: store.getState().scatter }); } );
 
+// google analytics
+import ReactGA from "react-ga";
+ReactGA.initialize( "UA-131505071-1" );
+ReactGA.pageview( window.location.pathname );
+import createHistory from "history/createBrowserHistory";
+const history = createHistory();
+history.listen( (location) => {
+    ReactGA.set({ page: location.pathname });
+    ReactGA.pageview( location.pathname );
+});
+
 render(
     <Provider store={ store }>
-        <BrowserRouter>
+        <Router history={ history }>
             <div>
                 <Route path="/"      component={Home} exact />
                 <Route path="/about" component={About} exact />
             </div>
-        </BrowserRouter>
+        </Router>
     </Provider>,
     document.getElementById("root")
 );
