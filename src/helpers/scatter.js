@@ -21,9 +21,10 @@ const handleError =
 
 export const scatterLogin = (dispatch) =>
 {
-    ScatterJS.scatter.connect("eosio").then(
+    ScatterJS.scatter.connect("eosio", { initTimeout: 2000 }).then(
         (connected) => {
             if ( ! connected ) {
+                dispatch( logout() );
                 dispatch( showError("Couldn't connect to Scatter") );
                 return false;
             }
