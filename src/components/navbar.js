@@ -8,7 +8,6 @@ import
     Nav,
     NavItem,
     Navbar,
-    NavbarBrand,
     NavbarToggler,
 } from "reactstrap";
 
@@ -31,7 +30,7 @@ class NavBar extends Component
         return (
             <div>
                 <Navbar expand="md" dark>
-                    <Link className="lightgray" to="/">
+                    <Link className="navbar-brand" to="/">
                         <FontAwesomeIcon icon={ ["fas", "dharmachakra"] } size="lg"/>
                         &nbsp;
                         fasma
