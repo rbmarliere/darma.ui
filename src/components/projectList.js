@@ -12,7 +12,7 @@ class ProjectList extends Component
     render()
     {
         return (
-            <Container className="projects">
+            <Container className="main">
                 <Row>
                     {
                         apps.map( (data, i) => (

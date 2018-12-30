@@ -6,7 +6,7 @@ import Footer from "../components/footer";
 const Home = () =>
 {
     return (
-        <div className="main">
+        <div className="root">
             <NavBar></NavBar>
             <ProjectList></ProjectList>
             <Footer></Footer>
