@@ -31,12 +31,10 @@ class NavBar extends Component
         return (
             <div>
                 <Navbar expand="md" dark>
-                    <Link to="/">
-                        <NavbarBrand className="lightgray">
-                            <FontAwesomeIcon icon={ ["fas", "dharmachakra"] } size="lg"/>
-                            &nbsp;
-                            darma
-                        </NavbarBrand>
+                    <Link className="lightgray" to="/">
+                        <FontAwesomeIcon icon={ ["fas", "dharmachakra"] } size="lg"/>
+                        &nbsp;
+                        fasma
                     </Link>
                     <NavbarToggler onClick={ this.toggle } />
                     <Collapse isOpen={ this.state.isOpen } navbar>

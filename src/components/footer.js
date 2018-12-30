@@ -9,17 +9,11 @@ const Footer = () =>
             <div className="row d-flex justify-content-center pt-2 pb-2">
                 <div className="col-xs-12">
                     <p className="lightgray text-justify">
-                        darma {( new Date().getFullYear() )} &copy;
-                        &nbsp;
                         <Link to="/about">
-                            about us
+                            fasma {( new Date().getFullYear() )} &copy;
                         </Link>
                         &nbsp;
-                        <a href="https://github.com/rbmarliere/darma">
-                            <FontAwesomeIcon icon={ ["fab", "github"] } size="lg"/>
-                        </a>
-                        &nbsp;
-                        <a href="https://t.me/darma">
+                        <a href="https://t.me/fasma">
                             <FontAwesomeIcon icon={ ["fab", "telegram"] } size="lg"/>
                         </a>
                     </p>
