@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Login from "../containers/login";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import
 {
     Collapse,
+    Container,
     Nav,
     NavItem,
     Navbar,
     NavbarToggler,
+    Row
 } from "reactstrap";
 
 class NavBar extends Component
@@ -31,9 +32,15 @@ class NavBar extends Component
             <div>
                 <Navbar expand="md" dark>
                     <Link className="navbar-brand" to="/">
-                        <FontAwesomeIcon icon={ ["fas", "dharmachakra"] } size="lg"/>
-                        &nbsp;
-                        fasma
+                        <Container>
+                            <Row className="d-flex align-items-center">
+                                <div className="logo">
+                                    <img src={ require( "../assets/fasma.jpg" ) } alt="fasma"/>
+                                </div>
+                                &nbsp;
+                                fasma
+                            </Row>
+                        </Container>
                     </Link>
                     <NavbarToggler onClick={ this.toggle } />
                     <Collapse isOpen={ this.state.isOpen } navbar>

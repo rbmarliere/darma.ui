@@ -16,6 +16,21 @@ html, body {
     padding-bottom: 2%;
 }
 
+.logo {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.logo img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+
 footer {
     background-color: #1d2c63;
     max-width: 1024px;

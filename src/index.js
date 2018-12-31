@@ -19,10 +19,8 @@ import "./index.css";
 
 // fa
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faDharmachakra } from "@fortawesome/free-solid-svg-icons";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faTelegram } from "@fortawesome/free-brands-svg-icons";
-library.add( faDharmachakra, faGithub, faTelegram );
+library.add( faTelegram );
 
 // redux
 import { createStore } from "redux";
