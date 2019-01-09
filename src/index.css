@@ -55,8 +55,9 @@ footer a:hover {
 
 .navbar {
     background-color: #000000;
-    border-bottom: 10px solid #e7e7e7;
+    box-shadow: 0px 0px 10px 3px #111;
     /*max-width: 1024px !important;
+    border-bottom: 10px solid #e7e7e7;
     margin: auto;*/
 }
 
