@@ -9,8 +9,8 @@ html, body {
 }
 
 .main {
+    /*max-width: 1024px !important;*/
     flex: 1 1 auto;
-    max-width: 1024px !important;
     margin: auto;
     padding-top: 2%;
     padding-bottom: 2%;
@@ -32,7 +32,7 @@ html, body {
 }
 
 footer {
-    background-color: #1d2c63;
+    /*background-color: #1d2c63;*/
     max-width: 1024px;
     margin: auto;
     height: auto;
@@ -43,7 +43,7 @@ footer p {
 }
 
 footer a {
-    color: #f8f8f8 !important;
+    color: #aaaaaa !important;
 }
 footer a:hover {
     color: #c1d5ea !important;
@@ -54,10 +54,10 @@ footer a:hover {
 }
 
 .navbar {
-    background-color: #46668d;
+    background-color: #000000;
     border-bottom: 10px solid #e7e7e7;
-    max-width: 1024px !important;
-    margin: auto;
+    /*max-width: 1024px !important;
+    margin: auto;*/
 }
 
 .navbar-brand:hover {

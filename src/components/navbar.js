@@ -35,10 +35,10 @@ class NavBar extends Component
                         <Container>
                             <Row className="d-flex align-items-center">
                                 <div className="logo">
-                                    <img src={ require( "../assets/fasma.jpg" ) } alt="fasma"/>
+                                    <img src={ require( "../assets/stakemine.png" ) } alt="StakeMine"/>
                                 </div>
-                                &nbsp;
-                                fasma
+                                    &nbsp;
+                                    Stake<b>Mine</b>
                             </Row>
                         </Container>
                     </Link>

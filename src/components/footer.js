@@ -8,12 +8,12 @@ const Footer = () =>
         <footer className="container-fluid" expand="md">
             <div className="row d-flex justify-content-center pt-2 pb-2">
                 <div className="col-xs-12">
-                    <p className="lightgray text-justify">
+                    <p className="text-justify">
                         <Link to="/about">
-                            fasma {( new Date().getFullYear() )} &copy;
+                            StakeMine {( new Date().getFullYear() )} &copy;
                         </Link>
                         &nbsp;
-                        <a href="https://t.me/fasma">
+                        <a href="https://t.me/stakemine">
                             <FontAwesomeIcon icon={ ["fab", "telegram"] } size="lg"/>
                         </a>
                     </p>
