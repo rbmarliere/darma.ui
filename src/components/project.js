@@ -4,6 +4,8 @@ import {
     Button,
     Card,
     CardBody,
+    CardFooter,
+    CardHeader,
     CardImg,
     CardText,
     CardTitle,
@@ -13,52 +15,59 @@ import {
 } from "reactstrap";
 import Stake from "./modals/stake";
 import Error from "./modals/error";
+import Info from "./modals/info";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Project =
     (props) => (
         <div>
-            <Card>
-                <CardImg top width="100%" src={ require( "../assets/" + props.image ) }/>
+            <Card className="projectCard">
+                <CardHeader className="projectHeader"></CardHeader>
+                <div className="projectImageDiv">
+                    <a href={ props.url } target="_blank" rel="noopener noreferrer">
+                        <CardImg top src={ props.image_url } className="projectImage"/>
+                    </a>
+                </div>
                 <CardBody>
-                    <CardTitle>
-                        { props.title }
+                    <CardTitle className="projectTitle">
+                        <a href={ "https://bloks.io/?p=account/" + props.contract } target="_blank" rel="noopener noreferrer">
+                            <b>{ props.contract }</b>
+                        </a>
                     </CardTitle>
-                    <CardText>
-                        { props.text }
+                    <CardText className="projectText">
+                        { props.description }
                     </CardText>
+                </CardBody>
+                <CardFooter>
                     <Container>
-                        <Row className="p-2">
-                            <Col>
-                                <a href={ props.url }>
-                                    <Button className="btn-block" color="info">
-                                        Info
-                                    </Button>
-                                </a>
+                        <Row>
+                            <Col lg="3" md="3" xs="3" className="projectButton">
+                                <Info {...props}/>
                             </Col>
-                            <Col>
-                                <Button
-                                    className="btn-block"
-                                    color="primary"
-                                    onClick={ () => props.claim( props.scatter, props.contract ) }>
-                                    Claim
-                                </Button>
-                            </Col>
-                        </Row>
-                        <Row className="p-2">
-                            <Col>
+                            <Col lg="3" md="3" xs="3" className="projectButton">
                                 <Stake {...props}/>
                             </Col>
-                            <Col>
+                            <Col lg="3" md="3" xs="3" className="projectButton">
                                 <Button
                                     className="btn-block"
-                                    color="success"
+                                    title="Unstake Bandwidth from Project"
+                                    color="danger"
                                     onClick={ () => props.unstake( props.scatter, props.contract ) }>
-                                    Unstake
+                                    <FontAwesomeIcon icon={ ["fas", "heart-broken"] } size="lg"/>
+                                </Button>
+                            </Col>
+                            <Col lg="3" md="3" xs="3" className="projectButton">
+                                <Button
+                                    className="btn-block"
+                                    title="Claim Rewards"
+                                    color="primary"
+                                    onClick={ () => props.claim( props.scatter, props.contract ) }>
+                                    <FontAwesomeIcon icon={ ["fas", "money-bill-wave"] } size="lg"/>
                                 </Button>
                             </Col>
                         </Row>
                     </Container>
-                </CardBody>
+                </CardFooter>
             </Card>
             <Error {...props}/>
         </div>
@@ -67,10 +76,17 @@ const Project =
 Project.propTypes =
 {
     contract: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
+    image_url: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    period: PropTypes.number.isRequired,
+    cpu_target: PropTypes.string.isRequired,
+    cpu_reward: PropTypes.string.isRequired,
+    cpu_total: PropTypes.string.isRequired,
+    net_target: PropTypes.string.isRequired,
+    net_reward: PropTypes.string.isRequired,
+    net_total: PropTypes.string.isRequired,
+
     scatter: PropTypes.object,
     stake: PropTypes.func.isRequired,
     unstake: PropTypes.func.isRequired
