@@ -7,6 +7,7 @@ import { render } from "react-dom";
 // views
 import Home from "./views/home";
 import About from "./views/about";
+import List from "./views/list";
 
 // scatter
 import ScatterJS from "scatterjs-core";
@@ -48,6 +49,7 @@ render(
             <div>
                 <Route path="/"      component={Home} exact />
                 <Route path="/about" component={About} exact />
+                <Route path="/list"  component={List} exact />
             </div>
         </Router>
     </Provider>,
