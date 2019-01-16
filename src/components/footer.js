@@ -1,24 +1,48 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    Col,
+    Container,
+    Row
+} from "reactstrap";
 
 const Footer = () =>
 {
     return (
         <footer className="container-fluid" expand="md">
-            <div className="row d-flex justify-content-center pt-2 pb-2">
-                <div className="col-xs-12">
-                    <p className="text-justify">
-                        <Link to="/about">
-                            StakeMine {( new Date().getFullYear() )} &copy;
-                        </Link>
+            <Container>
+                <Row className="pt-3 pb-3">
+                    <Col xs="3">
+                        <b>&gt;&gt;</b>
                         &nbsp;
-                        <a href="https://t.me/stakemine">
-                            <FontAwesomeIcon icon={ ["fab", "telegram"] } size="lg"/>
+                        StakeMine
+                    </Col>
+                    <Col xs="3">
+                        &nbsp;
+                        ::
+                        &nbsp;
+                        <a href="https://t.me/stakemine" target="_blank" rel="noopener noreferrer">
+                            contact
                         </a>
-                    </p>
-                </div>
-            </div>
+                    </Col>
+                    <Col xs="3">
+                        &nbsp;
+                        ::
+                        &nbsp;
+                        <Link to="/about">
+                            about
+                        </Link>
+                    </Col>
+                    <Col xs="3">
+                        &nbsp;
+                        ::
+                        &nbsp;
+                        <Link to="/list">
+                            list
+                        </Link>
+                    </Col>
+                </Row>
+            </Container>
         </footer>
     );
 };
