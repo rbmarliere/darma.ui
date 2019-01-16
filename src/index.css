@@ -1,3 +1,16 @@
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 html, body {
     min-height: 100vh;
 }
@@ -33,20 +46,21 @@ html, body {
 
 footer {
     /*background-color: #1d2c63;*/
-    max-width: 1024px;
+    /*max-width: 1024px;*/
+    background-image:
+        linear-gradient(
+          to top,
+          #AAA,
+          #FFF
+        );
     margin: auto;
     height: auto;
-}
-
-footer p {
+    font-family: monospace;
     margin-top: 1rem;
 }
 
 footer a {
     color: #aaaaaa !important;
-}
-footer a:hover {
-    color: #c1d5ea !important;
 }
 
 .lightgray {
@@ -72,8 +86,58 @@ footer a:hover {
     padding: 1%;
 }
 
+.projectCard {
+    border-right: 0;
+    max-width: 280px;
+    box-shadow: 2px 2px 5px 1px #AAAAAA;
+    border-radius: calc(.6rem - 1px) calc(.6rem - 1px) 0 0 !important;
+}
+
+.projectHeader {
+    background-color: #b1bdcb;
+    height: 72px;
+    border: 0;
+    border-radius: calc(.5rem - 1px) calc(.5rem - 1px) 0 0 !important;
+    margin-bottom: 55px;
+    position: relative;
+}
+
+.projectImageDiv {
+    position: absolute;
+    left: 30%;
+}
+
+.projectImage {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+
+.projectTitle {
+    text-align: center;
+}
+
+.projectTitle > a {
+    color: #222 !important;
+}
+
+.projectText {
+    max-height: 260px;
+    overflow-y: scroll;
+}
+
+.projectButton {
+    padding-left: 2% !important;
+    padding-right: 2% !important;
+}
+
 .error {
     background-color: #d9534f;
     color: #e7e7e7;
+}
+
+.infoFooter {
+    display: block;
 }
 
