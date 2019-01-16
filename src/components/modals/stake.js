@@ -12,6 +12,7 @@ import
     Row
 } from "reactstrap";
 import NumberFormat from "react-number-format";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Stake extends Component
 {
@@ -25,7 +26,7 @@ class Stake extends Component
 
     toggle()
     {
-        this.setState({ modal: !this.state.modal, cpuQuantity: this.state.cpuQuantity, netQuantity: this.state.netQuantity });
+        this.setState({ modal: !this.state.modal, cpuQuantity: 0, netQuantity: 0 });
     }
 
     cpuChange(e)
@@ -41,14 +42,29 @@ class Stake extends Component
     stake()
     {
         this.toggle();
-        this.props.stake( this.props.scatter, this.props.contract, this.state.cpuQuantity, this.state.netQuantity );
+
+        var cpu = this.state.cpuQuantity;
+        var net = this.state.netQuantity;
+
+        if ( cpu === 0 && net !== 0 )
+            cpu = "0.0000 EOS";
+        if ( cpu !== 0 && net === 0 )
+            net = "0.0000 EOS";
+
+        this.props.stake( this.props.scatter, this.props.contract, cpu, net );
     }
 
     render()
     {
         return (
             <div>
-                <Button className="btn-block" color="danger" onClick={ this.toggle }>Stake</Button>
+                <Button
+                    className="btn-block"
+                    title="Stake Bandwidth to Project"
+                    color="success"
+                    onClick={ this.toggle }>
+                    <FontAwesomeIcon icon={ ["fas", "handshake"] } size="lg"/>
+                </Button>
                 <Modal isOpen={ this.state.modal } toggle={ this.toggle }>
                     <ModalBody>
                         <Container>
@@ -63,6 +79,7 @@ class Stake extends Component
                                     fixedDecimalScale={true}
                                     suffix=" EOS"
                                     tag={NumberFormat}
+                                    defaultValue="0"
                                 />
                             </Row>
                             <Row className="p-2">
@@ -76,6 +93,7 @@ class Stake extends Component
                                     fixedDecimalScale={true}
                                     suffix=" EOS"
                                     tag={NumberFormat}
+                                    defaultValue="0"
                                 />
                             </Row>
                         </Container>

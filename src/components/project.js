@@ -11,8 +11,8 @@ import {
     Container,
     Row
 } from "reactstrap";
-import Stake from "./stake";
-import Error from "./error";
+import Stake from "./modals/stake";
+import Error from "./modals/error";
 
 const Project =
     (props) => (
