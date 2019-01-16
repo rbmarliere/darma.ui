@@ -2,7 +2,10 @@ import { login, logout, showError } from "./actions";
 import { Api, JsonRpc } from "eosjs";
 import ScatterJS from "scatterjs-core";
 
-const endpoint = "http://10.197.70.202:8888";
+export const rpc = new JsonRpc( "http://10.197.70.202:8888" );
+
+const stakemine = "stakemine112";
+
 const network = {
     blockchain: "eos",
     chainId: "f29e900c77f2798c445245b21ed431a2814b28635f0bee57230080fa54982805",
@@ -57,7 +60,6 @@ export const scatterStake = ( dispatch, scatter, contract, cpu_quantity, net_qua
 {
     try {
         const account = scatter.identity.accounts.find( (x) => x.blockchain === "eos" ).name;
-        const rpc = new JsonRpc(endpoint);
         const eos = scatter.eos( network, Api, { rpc });
 
         eos.transact({
@@ -78,13 +80,14 @@ export const scatterStake = ( dispatch, scatter, contract, cpu_quantity, net_qua
                     }
                 },
                 {
-                    account: contract,
+                    account: stakemine,
                     name: "stake",
                     authorization: [{
                         actor: account,
                         permission: "active"
                     }],
                     data: {
+                        contract: contract,
                         holder: account
                     }
                 },
@@ -104,7 +107,6 @@ export const scatterUnstake = async ( dispatch, scatter, contract ) =>
 {
     try {
         const account = scatter.identity.accounts.find( (x) => x.blockchain === "eos" ).name;
-        const rpc = new JsonRpc(endpoint);
         const eos = scatter.eos( network, Api, { rpc });
         const deleg =
             await rpc.get_table_rows(
@@ -136,13 +138,14 @@ export const scatterUnstake = async ( dispatch, scatter, contract ) =>
                     }
                 },
                 {
-                    account: contract,
+                    account: stakemine,
                     name: "unstake",
                     authorization: [{
                         actor: account,
                         permission: "active"
                     }],
                     data: {
+                        contract: contract,
                         holder: account
                     }
                 },
@@ -162,7 +165,6 @@ export const scatterClaim = ( dispatch, scatter, contract ) =>
 {
     try {
         const account = scatter.identity.accounts.find( (x) => x.blockchain === "eos" ).name;
-        const rpc = new JsonRpc(endpoint);
         const eos = scatter.eos( network, Api, { rpc });
         eos.transact({
             actions: [
