@@ -20,8 +20,15 @@ import "./index.css";
 
 // fa
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faExclamationTriangle, faHandshake, faHeartBroken, faMoneyBillWave  } from "@fortawesome/free-solid-svg-icons";
-library.add( faExclamationTriangle, faHandshake, faHeartBroken, faMoneyBillWave );
+import
+{
+    faExclamationTriangle,
+    faHandshake,
+    faHeartBroken,
+    faMoneyBillWave,
+    faRedo
+} from "@fortawesome/free-solid-svg-icons";
+library.add( faExclamationTriangle, faHandshake, faHeartBroken, faMoneyBillWave, faRedo );
 
 // redux
 import { createStore } from "redux";
