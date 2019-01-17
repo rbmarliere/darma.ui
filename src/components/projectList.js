@@ -93,6 +93,9 @@ class ProjectList extends Component
                     <Col xs="2"></Col>
                 </Row>
                 <Row>
+                    &nbsp;
+                </Row>
+                <Row>
                     {
                         this.state.filtered.map( (data, i) => (
                             <Col
