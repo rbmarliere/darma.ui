@@ -1,26 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { NavLink } from "reactstrap";
+import Error from "./modals/error";
 
 const LoginComp =
-    ({ scatter, login, logout }) => {
-        if ( scatter !== null ) {
+    (props) => {
+        if ( props.scatter !== null ) {
             return (
-                <NavLink
-                    className="lightgray"
-                    onClick={ logout }
-                    href="#">
-                    { scatter.identity.accounts.find( (x) => x.blockchain === "eos" ).name } - logout
-                </NavLink>
+                <div>
+                    <NavLink
+                        className="lightgray"
+                        onClick={ props.logout }
+                        href="#">
+                        { props.scatter.identity.accounts.find( (x) => x.blockchain === "eos" ).name } - logout
+                    </NavLink>
+                    <Error {...props}/>
+                </div>
             );
         } else {
             return (
-                <NavLink
-                    className="lightgray"
-                    onClick={ login }
-                    href="#">
-                    login
-                </NavLink>
+                <div>
+                    <NavLink
+                        className="lightgray"
+                        onClick={ props.login }
+                        href="#">
+                        login
+                    </NavLink>
+                    <Error {...props}/>
+                </div>
             );
         }
     };

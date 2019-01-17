@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import
 {
@@ -7,19 +7,28 @@ import
     ModalHeader
 } from "reactstrap";
 
-const Error =
-    (props) => (
-        <div>
-            <Modal isOpen={ (props.error !== null) } toggle={ props.hideError }>
-                <ModalHeader className="error" toggle={ props.hideError }>
-                    ERROR
+class Error extends Component
+{
+    constructor(props)
+    {
+        super(props);
+        console.log(props);
+    }
+
+    render()
+    {
+        return (
+            <Modal isOpen={ (this.props.error !== null) } toggle={ this.props.hideError }>
+                <ModalHeader className="error" toggle={ this.props.hideError }>
+                        ERROR
                 </ModalHeader>
                 <ModalBody>
-                    { props.error }
+                    { this.props.error }
                 </ModalBody>
             </Modal>
-        </div>
-    );
+        );
+    }
+}
 
 Error.propTypes =
 {

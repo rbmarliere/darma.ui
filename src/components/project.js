@@ -14,7 +14,6 @@ import {
     Row
 } from "reactstrap";
 import Stake from "./modals/stake";
-import Error from "./modals/error";
 import Info from "./modals/info";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -69,7 +68,6 @@ const Project =
                     </Container>
                 </CardFooter>
             </Card>
-            <Error {...props}/>
         </div>
     );
 
