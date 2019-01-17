@@ -118,9 +118,13 @@ export const scatterUnstake = async ( dispatch, scatter, contract ) =>
                 }
             );
 
+        if (deleg.rows.length === 0) {
+            dispatch( showError("You are not staking for this project.") );
+            return;
+        }
+
         const cpu_quantity = deleg.rows[0].cpu_weight;
         const net_quantity = deleg.rows[0].net_weight;
-        //todo: handle holder not found error
 
         eos.transact({
             actions: [
