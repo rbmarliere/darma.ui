@@ -35,7 +35,13 @@ class ProjectList extends Component
                 <Row>
                     {
                         this.state.listings.map( (data, i) => (
-                            <Col key={i} className="project" lg="4">
+                            <Col
+                                key={i}
+                                className="project"
+                                xs={{ size: 8, offset: 2 }}
+                                md={{ size: 6, offset: 0 }}
+                                lg={{ size: 4, offset: 0 }}
+                            >
                                 <Project {...data} />
                             </Col>
                         ))
