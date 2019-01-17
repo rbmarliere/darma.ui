@@ -87,6 +87,7 @@ footer a {
 }
 
 .projectCard {
+    margin: 0 auto;
     border-right: 0;
     max-width: 280px;
     box-shadow: 2px 2px 5px 1px #AAAAAA;
