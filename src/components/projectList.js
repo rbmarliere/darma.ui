@@ -4,6 +4,7 @@ import {
     Button,
     Col,
     Container,
+    Input,
     Row
 } from "reactstrap";
 import { rpc } from "../helpers/scatter";
@@ -17,11 +18,14 @@ class ProjectList extends Component
         this.state = {
             listings: [],
             showLoader: false,
-            lowerBound: null
+            lowerBound: null,
+            hasMore: true,
+            filtering: false,
+            filtered: []
         };
     }
 
-    getListings()
+    getListings(recursive = false)
     {
         const isFirstPage = this.state.lowerBound === null;
         const listings = this.state.listings.slice();
@@ -36,11 +40,19 @@ class ProjectList extends Component
         ).then(
             (res) => {
                 const newListings = isFirstPage ? res.rows : res.rows.slice(1, res.rows.length);
-                this.setState( {
+                this.setState({
                     listings: listings.concat(newListings),
                     showLoader: res.more,
-                    lowerBound: res.rows[ res.rows.length - 1 ].contract
+                    lowerBound: res.rows[ res.rows.length - 1 ].contract,
+                    filtered: this.state.filtering ? this.state.filtered : listings.concat(newListings)
                 });
+                if (newListings.length > 0) {
+                    if (recursive) {
+                        this.getListings();
+                    }
+                } else {
+                    this.setState({ hasMore: false });
+                }
             }
         );
     }
@@ -50,13 +62,39 @@ class ProjectList extends Component
         this.getListings();
     }
 
+    searchChange(e)
+    {
+        if (this.state.hasMore)
+            this.getListings(true);
+
+        if (e.target.value === "") {
+            this.setState({ filtering: false, filtered: this.state.listings });
+        } else {
+            const listings = this.state.listings.slice();
+            const filter = e.target.value.toLowerCase();
+            let filtered = listings.filter(i => {
+                return i.contract.includes(filter) || i.description.toLowerCase().includes(filter);
+            });
+            this.setState({ filtering: true, filtered: filtered });
+        }
+    }
+
     render()
     {
         return (
             <Container className="main">
                 <Row>
+                    <Col xs="2"></Col>
+                    <Col xs="8" className="text-center">
+                        <Input
+                            placeholder="Search Projects"
+                            onChange={ this.searchChange.bind(this) } />
+                    </Col>
+                    <Col xs="2"></Col>
+                </Row>
+                <Row>
                     {
-                        this.state.listings.map( (data, i) => (
+                        this.state.filtered.map( (data, i) => (
                             <Col
                                 key={i}
                                 className="project"

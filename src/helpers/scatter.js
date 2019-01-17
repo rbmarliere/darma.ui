@@ -120,6 +120,8 @@ export const scatterUnstake = async ( dispatch, scatter, contract ) =>
 
         const cpu_quantity = deleg.rows[0].cpu_weight;
         const net_quantity = deleg.rows[0].net_weight;
+        //todo: handle holder not found error
+
         eos.transact({
             actions: [
                 {
