@@ -2,7 +2,8 @@ import { login, logout, showError } from "./actions";
 import { Api, JsonRpc } from "eosjs";
 import ScatterJS from "scatterjs-core";
 
-export const rpc = new JsonRpc( "http://10.197.70.202:8888" );
+//export const rpc = new JsonRpc( "http://10.197.70.202:8888" );
+export const rpc = new JsonRpc( "https://api-kylin.eoslaomao.com" );
 
 const stakemine = "stakemine112";
 
