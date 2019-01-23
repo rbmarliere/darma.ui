@@ -9,10 +9,10 @@ const stakemine = "stakemine112";
 
 const network = {
     blockchain: "eos",
-    chainId: "f29e900c77f2798c445245b21ed431a2814b28635f0bee57230080fa54982805",
-    host: "10.197.70.202",
-    port: 8888,
-    protocol: "http"
+    chainId: "5fff1dae8dc8e2fc4d5b23b2c7665c97f9e9d8edf2b6485a86ba311c25639191",
+    host: "api-kylin.eoslaomao.com",
+    port: 443,
+    protocol: "https"
 };
 
 const handleError =
