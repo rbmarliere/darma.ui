@@ -1,18 +1,21 @@
 import React from "react";
 import NavBar from "../components/navbar";
+import Welcome from "../components/welcome";
 import ProjectList from "../components/projectList";
-import Footer from "../components/footer";
+import Footer from "../components/Footer/Footer";
 
-const Home = () =>
-{
+const Home = () => {
     return (
         <div className="root">
-            <NavBar></NavBar>
-            <ProjectList></ProjectList>
-            <Footer></Footer>
+            <NavBar />
+
+            <Welcome />
+
+            <ProjectList />
+
+            <Footer />
         </div>
     );
 };
 
 export default Home;
-

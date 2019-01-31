@@ -17,62 +17,86 @@ import Stake from "./modals/stake";
 import Info from "./modals/info";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Project =
-    (props) => (
-        <div>
-            <Card className="projectCard">
-                <CardHeader className="projectHeader"></CardHeader>
-                <div className="projectImageDiv">
-                    <a href={ props.url } target="_blank" rel="noopener noreferrer">
-                        <CardImg top src={ props.image_url } className="projectImage"/>
+const Project = props => (
+    <div>
+        <Card className="projectCard">
+            <CardHeader className="projectHeader" />
+            <div className="projectImageDiv">
+                <a href={props.url} target="_blank" rel="noopener noreferrer">
+                    <CardImg
+                        top
+                        src={props.image_url}
+                        className="projectImage"
+                    />
+                </a>
+            </div>
+            <CardBody>
+                <CardTitle className="projectTitle">
+                    <a
+                        href={"https://bloks.io/?p=account/" + props.contract}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <b>{props.contract}</b>
                     </a>
-                </div>
-                <CardBody>
-                    <CardTitle className="projectTitle">
-                        <a href={ "https://bloks.io/?p=account/" + props.contract } target="_blank" rel="noopener noreferrer">
-                            <b>{ props.contract }</b>
-                        </a>
-                    </CardTitle>
-                    <CardText className="projectText">
-                        { props.description }
-                    </CardText>
-                </CardBody>
-                <CardFooter>
-                    <Container>
-                        <Row>
-                            <Col lg="3" md="3" xs="3" className="projectButton">
-                                <Info {...props}/>
-                            </Col>
-                            <Col lg="3" md="3" xs="3" className="projectButton">
-                                <Stake {...props}/>
-                            </Col>
-                            <Col lg="3" md="3" xs="3" className="projectButton">
-                                <Button
-                                    className="btn-block"
-                                    title="Unstake Bandwidth from Project"
-                                    color="danger"
-                                    onClick={ () => props.unstake( props.scatter, props.contract ) }>
-                                    <FontAwesomeIcon icon={ ["fas", "heart-broken"] } size="lg"/>
-                                </Button>
-                            </Col>
-                            <Col lg="3" md="3" xs="3" className="projectButton">
-                                <Button
-                                    className="btn-block"
-                                    title="Claim Rewards"
-                                    color="primary"
-                                    onClick={ () => props.claim( props.scatter, props.contract ) }>
-                                    <FontAwesomeIcon icon={ ["fas", "money-bill-wave"] } size="lg"/>
-                                </Button>
-                            </Col>
-                        </Row>
-                    </Container>
-                </CardFooter>
-            </Card>
-        </div>
-    );
+                </CardTitle>
+                <CardText className="projectText">{props.description}</CardText>
+            </CardBody>
+            <CardFooter>
+                <Container>
+                    <Row>
+                        <Col lg="3" md="3" xs="3" className="projectButton">
+                            <Info {...props} />
+                        </Col>
+                        <Col lg="3" md="3" xs="3" className="projectButton">
+                            <Stake {...props} />
+                        </Col>
+                        <Col lg="3" md="3" xs="3" className="projectButton">
+                            <Button
+                                className="btn-block"
+                                title="Unstake Bandwidth from Project"
+                                color="danger"
+                                onClick={() =>
+                                    props.unstake(props.scatter, props.contract)
+                                }
+                            >
+                                <FontAwesomeIcon
+                                    icon={["fas", "heart-broken"]}
+                                    size="lg"
+                                />
+                            </Button>
+                        </Col>
+                        <Col lg="3" md="3" xs="3" className="projectButton">
+                            <Button
+                                className="btn-block"
+                                title="Claim Rewards"
+                                color="primary"
+                                onClick={() =>
+                                    props.claim(props.scatter, props.contract)
+                                }
+                            >
+                                <FontAwesomeIcon
+                                    icon={["fas", "money-bill-wave"]}
+                                    size="lg"
+                                />
+                            </Button>
+                        </Col>
+                    </Row>
+                    <hr />
+                    <h6>Your Stake</h6>
 
-Project.propTypes =
-{
+                    <div className="stats">
+                        <p>CPU:0</p>
+                        <p>NET:0</p>
+                        <p>REWARDS:0</p>
+                    </div>
+                </Container>
+            </CardFooter>
+        </Card>
+    </div>
+);
+
+Project.propTypes = {
     contract: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
     image_url: PropTypes.string.isRequired,
@@ -91,4 +115,3 @@ Project.propTypes =
 };
 
 export default Project;
-
